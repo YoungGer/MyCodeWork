@@ -21,8 +21,10 @@ shinyUI(fluidPage(
         # Show a plot of the generated distribution
         mainPanel(
             tabsetPanel(type = "tabs", 
-                tabPanel("Plot", plotOutput("plot1",brush = brushOpts(id = "plot1_brush",resetOnNew = TRUE)),
+                tabPanel("Time Plot", plotOutput("plot1",brush = brushOpts(id = "plot1_brush",resetOnNew = TRUE)),
                              plotOutput("plot2")), 
+                tabPanel("TW Plot", plotOutput("plot3",brush = brushOpts(id = "plot3_brush",resetOnNew = TRUE)),
+                         plotOutput("plot4")), 
                 tabPanel("Summary", verbatimTextOutput("summary")), 
                 tabPanel("Table", tableOutput("table")))
         )

@@ -28,10 +28,32 @@ shinyServer(function(input, output) {
         d = subset(d,d$pd_class %in% input$pdtypes)
         ggplot(d, aes(pd_location, peak_voltage*polarity,color=factor(pd_class))) + geom_point() +
             coord_cartesian(xlim = ranges$x, ylim = ranges$y) 
-            
     })
     observe({  #观察是不是有zoom的情况
         brush <- input$plot1_brush
+        if (!is.null(brush)) {
+            ranges$x <- c(brush$xmin, brush$xmax)
+            ranges$y <- c(brush$ymin, brush$ymax)
+            
+        } else {
+            ranges$x <- NULL
+            ranges$y <- NULL
+        }
+    })
+    output$plot3 <- renderPlot({  #原图
+        d = datasetInput()
+        d = subset(d,d$pd_class %in% input$pdtypes)
+        ggplot(d, aes(T, W,color=factor(pd_class))) + geom_point() 
+    })
+    
+    output$plot4 <- renderPlot({ #控制缩进的图
+        d = datasetInput()
+        d = subset(d,d$pd_class %in% input$pdtypes)
+        ggplot(d, aes(T, W,color=factor(pd_class))) + geom_point() +
+            coord_cartesian(xlim = ranges$x, ylim = ranges$y) 
+    })
+    observe({  #观察是不是有zoom的情况
+        brush <- input$plot3_brush
         if (!is.null(brush)) {
             ranges$x <- c(brush$xmin, brush$xmax)
             ranges$y <- c(brush$ymin, brush$ymax)
