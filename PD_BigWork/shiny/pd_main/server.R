@@ -74,5 +74,21 @@ shinyServer(function(input, output) {
         data.frame(head(datasetInput(),10))
     })
     
+    #产生table2
+    output$table2 <- renderTable({
+        data.frame(head(datasetInput(),10))
+    })
+    
+    #产生table3
+    output$table3 <- renderTable({
+        data.frame(head(datasetInput(),10))
+    })
+    
+    #产生table4
+    output$table4 <- renderTable({
+        data.frame(head(datasetInput(),10))
+    })
+    
+    
     
 })

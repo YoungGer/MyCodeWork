@@ -26,7 +26,16 @@ shinyUI(fluidPage(
                 tabPanel("TW Plot", plotOutput("plot3",brush = brushOpts(id = "plot3_brush",resetOnNew = TRUE)),
                          plotOutput("plot4")), 
                 tabPanel("Summary", verbatimTextOutput("summary")), 
-                tabPanel("Table", tableOutput("table")))
+                tabPanel("Table", tableOutput("table")),
+                tabPanel("SVM", tableOutput("table2")),
+                tabPanel("Neural Network", tableOutput("table3")),
+                tabPanel("Table4", 
+                         # Copy the line below to make a file upload manager
+                         fileInput("file", label = h3("File input")),
+                         
+                         hr(),
+                         fluidRow(column(4, verbatimTextOutput("value"))),
+                         tableOutput("table4")) )
         )
     )
 ))
